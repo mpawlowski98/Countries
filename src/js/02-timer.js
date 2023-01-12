@@ -26,24 +26,16 @@ const options = {
 };
 const flatPickr = flatpickr('input#datetime-picker', options);
 
-function addLeadingZero(value) {
-  return String.apply(value).padStart(2, `0`);
-}
-
 const countTime = () => {
   let time = setInterval(() => {
     startBtn.disabled = true;
-    const second = 1000;
-    const minute = second * 60;
-    const hour = minute * 60;
-    const day = hour * 24;
 
-    let ms = userDate - new Date();
-    const daysT = Math.floor(ms / day);
-    const hoursT = Math.floor((ms % day) / hour);
-    const minutesT = Math.floor(((ms % day) % hour) / minute);
-    const secondsT = Math.floor((((ms % day) % hour) % minute) / second);
-    days.textContent = daysT > 10 ? daysT : addLeadingZero(days);
+    let ms = userDate - Date.now();
+    let daysT = Math.floor(ms / 86400000);
+    let hoursT = Math.floor((ms % 86400000) / 3600000);
+    let minutesT = Math.floor(((ms % 86400000) % 3600000) / 60000);
+    secondsT = Math.floor((((ms % 86400000) % 3600000) % 60000) / 1000);
+    days.textContent = daysT > 10 ? daysT : addLeadingZero(daysT);
     hours.textContent = hoursT > 10 ? hoursT : addLeadingZero(hoursT);
     minutes.textContent = minutesT > 10 ? minutesT : addLeadingZero(minutesT);
     seconds.textContent = secondsT > 10 ? secondsT : addLeadingZero(secondsT);
@@ -58,3 +50,7 @@ const countTime = () => {
 };
 
 startBtn.addEventListener(`click`, countTime);
+
+function addLeadingZero(value) {
+  return String.apply(value).padStart(2, `0`);
+}
