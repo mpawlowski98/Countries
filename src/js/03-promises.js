@@ -24,10 +24,10 @@ const giveTarget = e => {
   for (let i = 1; i <= targetAmount; i++) {
     createPromise(i, targetDelay)
       .then(({ position, delay }) => {
-        console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        alert(`✅ Fulfilled promise ${position} in ${delay}ms`);
       })
       .catch(({ position, delay }) => {
-        console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+        alert(`❌ Rejected promise ${position} in ${delay}ms`);
       });
     targetDelay += targetStep;
   }
