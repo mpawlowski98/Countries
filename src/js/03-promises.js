@@ -1,3 +1,4 @@
+import Notiflix, { Notify } from 'notiflix';
 let iDelay = document.querySelector(`input[name="delay"]`);
 let iStep = document.querySelector(`input[name="step"]`);
 let iAmount = document.querySelector(`input[name="amount"]`);
@@ -24,10 +25,10 @@ const giveTarget = e => {
   for (let i = 1; i <= targetAmount; i++) {
     createPromise(i, targetDelay)
       .then(({ position, delay }) => {
-        alert(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
       })
       .catch(({ position, delay }) => {
-        alert(`❌ Rejected promise ${position} in ${delay}ms`);
+        Notify.warning(`❌ Rejected promise ${position} in ${delay}ms`);
       });
     targetDelay += targetStep;
   }
