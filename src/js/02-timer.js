@@ -33,8 +33,8 @@ const countTime = () => {
     let ms = userDate - Date.now();
     let daysT = Math.floor(ms / 86400000);
     let hoursT = Math.floor((ms % 86400000) / 3600000);
-    let minutesT = Math.floor(((ms % 86400000) % 3600000) / 60000);
-    secondsT = Math.floor((((ms % 86400000) % 3600000) % 60000) / 1000);
+    let minutesT = Math.floor((ms % 3600000) / 60000);
+    let secondsT = Math.floor(((ms % 3600000) % 60000) / 1000);
     days.textContent = daysT > 10 ? daysT : addLeadingZero(daysT);
     hours.textContent = hoursT > 10 ? hoursT : addLeadingZero(hoursT);
     minutes.textContent = minutesT > 10 ? minutesT : addLeadingZero(minutesT);
@@ -52,5 +52,5 @@ const countTime = () => {
 startBtn.addEventListener(`click`, countTime);
 
 function addLeadingZero(value) {
-  return String.apply(value).padStart(2, `0`);
+  return String(value).padStart(2, `0`);
 }
