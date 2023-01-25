@@ -1,9 +1,8 @@
 import './css/styles.css';
-// import { create, lastIndexOf } from 'lodash';
-import debounce from 'lodash.debounce';
+import { create, lastIndexOf } from 'lodash';
 import { fetchCountries } from './fetchCountries';
 import Notiflix from 'notiflix';
-// var _ = require('lodash');
+var _ = require('lodash');
 
 const DEBOUNCE_DELAY = 300;
 
@@ -75,4 +74,4 @@ const handleInput = async e => {
     removeCountry();
   }
 };
-input.addEventListener(`input`, debounce(handleInput, DEBOUNCE_DELAY));
+input.addEventListener(`input`, _(handleInput, DEBOUNCE_DELAY));
