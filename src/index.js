@@ -7,10 +7,10 @@ var debounce = require('lodash.debounce');
 const DEBOUNCE_DELAY = 300;
 
 const input = document.getElementById(`search-box`);
-const countariesList = document.getElementsByClassName(`country-list`);
+const countriesList = document.getElementsByClassName(`country-list`);
 
 const createCountry = country => {
-  console.log(countariesList[0]);
+  console.log(countriesList[0]);
   const li = document.createElement(`li`);
   li.innerHTML = `<div class="info__container">
   <img src=${country.flags.svg} />
@@ -27,7 +27,7 @@ const createCountry = country => {
     `, `
   )}</span>
 </li></div>`;
-  countariesList[0].appendChild(li);
+  countriesList[0].appendChild(li);
 };
 
 const removeCountry = () => {
@@ -50,28 +50,29 @@ const createRollMarkup = data => {
     .join(``);
 };
 
-const handleInput = async e => {
-  let value = e.target.value.trim();
-  if (value !== ``) {
+const handleInput = async event => {
+  let value = event.target.value.trim();
+  if (value !== '') {
     const response = await fetchCountries(value);
     if (response.status === 200) {
       const countries = await response.json();
       if (countries && countries.length > 10) {
         Notiflix.Notify.info(
-          `Too many matches found. Please enter a more specific name`
+          'Too many matches found. Please enter a more specific name'
         );
       } else if (countries && countries.length === 1) {
         removeCountry();
         countries.forEach(country => createCountry(country));
       } else if (countries && countries.length >= 2 && countries.length <= 10) {
-        countariesList[0].innerHTML = createRollMarkup(countries);
-      } else if (response.status === 404) {
-        Notiflix.Notify, failure(`Oops, there is no country with that name`);
+        countriesList[0].innerHTML = createRollMarkup(countries);
       }
+    } else if (response.status === 404) {
+      Notiflix.Notify.failure('Oops, there is no country with that name');
     }
   }
-  if (value === ``) {
+  if (value === '') {
     removeCountry();
   }
 };
+
 input.addEventListener(`input`, debounce(handleInput, DEBOUNCE_DELAY));
