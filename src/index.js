@@ -2,7 +2,7 @@ import './css/styles.css';
 import debounce from 'lodash.debounce';
 import { fetchCountries } from './fetchCountries';
 import Notiflix from 'notiflix';
-var debounce = require('lodash.debounce');
+const debounces = require('lodash.debounce');
 
 const DEBOUNCE_DELAY = 300;
 
@@ -75,4 +75,4 @@ const handleInput = async event => {
   }
 };
 
-input.addEventListener(`input`, debounce(handleInput, DEBOUNCE_DELAY));
+input.addEventListener(`input`, debounces(handleInput, DEBOUNCE_DELAY));
