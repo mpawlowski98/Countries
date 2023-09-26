@@ -2,10 +2,10 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://mpawlowski98.github.io/goit-js-hw-10a",
+  "homepage": "https://mpawlowski98.github.io/Countries",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-10a/"
+    "build": "parcel build src/*.html --public-url /Countries/"
   },
   "repository": {
     "type": "git",
